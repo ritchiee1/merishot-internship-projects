@@ -1,0 +1,6 @@
+Python
+Smote
+Pandas
+Sklearn
+Seaborn
+Matplotlib
