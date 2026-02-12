@@ -1,1 +1,186 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"mount_file_id":"1LALFlRK_rlb3EL-n35IbtigS9h0MmjyN","authorship_tag":"ABX9TyN21L5Rn400Qf0jAI0y9w/i"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"markdown","source":["# 🎬 Hybrid Movie Recommendation System\n","\n","This project implements a **Hybrid Movie Recommendation System** using the MovieLens 1M dataset.\n","\n","It combines:\n","\n","- **Collaborative Filtering (Matrix Factorization)**\n","- **Content-Based Filtering (Cosine Similarity)**\n","\n","The goal is to generate personalized movie recommendations while addressing issues like **data sparsity** and **cold-start problems**.\n","\n","---\n","\n","## 📌 Problem Statement\n","\n","Streaming platforms such as Netflix and Amazon Prime host thousands of movies. Without intelligent recommendation systems, users may struggle to find relevant content, leading to poor user experience.\n","\n","This project builds a hybrid recommendation model that:\n","\n","- Learns user preferences from historical ratings  \n","- Uses movie genre similarity  \n","- Combines both approaches for improved personalization  \n","\n","---\n","\n","## 📂 Dataset Description\n","\n","**Source:** MovieLens 1M (GroupLens)\n","\n","- 👤 6,040 Users  \n","- 🎬 3,706 Movies  \n","- ⭐ 1,000,209 Ratings (1–5 scale)  \n","\n","### Files Used\n","\n","- `users.dat` – User demographics  \n","- `movies.dat` – Movie titles and genres  \n","- `ratings.dat` – User ratings  \n","\n","The dataset is highly **sparse**, making it suitable for testing hybrid recommendation systems.\n","\n","---\n","\n","## ⚙️ Project Workflow\n","\n","1. Data Loading  \n","2. Data Preprocessing  \n","3. Feature Engineering  \n","4. Model Architecture  \n","5. Model Training  \n","6. Model Evaluation  \n","7. Hybrid Recommendation  \n","8. Deployment  \n","9. Insights & Conclusion  \n","\n","---\n","\n","## 🧹 Data Loading and Preprocessing\n","\n","- Loaded datasets using `pandas`\n","- Merged ratings with movie metadata\n","- Created a **User–Item interaction matrix**\n","- Filled missing ratings with 0 for matrix factorization\n","\n","---\n","\n","## 🧠 Feature Engineering\n","\n","### Content-Based Features\n","\n","- Split movie genres using `|`\n","- Encoded genres using `MultiLabelBinarizer`\n","- Computed **Cosine Similarity** between movies\n","\n","### Collaborative Features\n","\n","- Constructed rating matrix\n","- Applied **Matrix Factorization** using NumPy\n","\n","---\n","\n","## 🏗 Model Architecture\n","\n","### 1️⃣ Collaborative Filtering (Matrix Factorization)\n","\n","The rating matrix **R** is factorized into:\n","\n","- `P` → User latent feature matrix  \n","- `Q` → Movie latent feature matrix  \n","\n","Predicted rating:\n","\n","R̂_ij = P_i · Q_j^T\n","\n","Optimization is performed using **Gradient Descent with Regularization**.\n","\n","---\n","\n","## 🚀 Model Training\n","\n","**Hyperparameters used:**\n","\n","- Latent factors (k): 20  \n","- Iterations (steps): 50  \n","- Learning rate (alpha): 0.002  \n","- Regularization (beta): 0.02  \n","\n","Training reduces prediction error over iterations.\n","\n","Example loss output:\n","\n","Step 0 → 1328145.3421  \n","Step 40 → 677275.4211  \n","\n","---\n","\n","## 📊 Model Evaluation\n","\n","Evaluation metric: **Root Mean Squared Error (RMSE)**\n","\n","Collaborative Filtering RMSE:\n","\n","0.7429\n","\n","Lower RMSE indicates better prediction accuracy.\n","\n","---\n","\n","## 🔀 Hybrid Recommendation\n","\n","Final prediction combines collaborative and content-based scores:\n","\n","final_score = α × collaborative_score + (1 - α) × content_score\n","\n","Where:\n","- α controls balance between both models.\n","\n","This improves personalization and helps handle cold-start cases.\n","\n","---\n","\n","## 💾 Model Deployment\n","\n","Matrices are saved using `pickle`:\n","\n","- `P_matrix.pkl`\n","- `Q_matrix.pkl`\n","- `genre_matrix.pkl`\n","\n","This allows fast inference without retraining the model.\n","\n","---\n","\n","## 📌 Key Insights\n","\n","- Matrix factorization works efficiently using NumPy.\n","- Content-based filtering improves cold-start recommendations.\n","- Hybrid systems balance user behavior and movie similarity.\n","- RMSE shows good predictive performance.\n","- Precomputed recommendations simulate production-ready deployment.\n","\n","---\n","\n","## 🛠 Technologies Used\n","\n","- Python\n","- NumPy\n","- Pandas\n","- Scikit-learn\n","- Pickle\n","- Google Colab\n","\n","---\n","\n","## 📈 Future Improvements\n","\n","- Implement Surprise library SVD for comparison\n","- Add implicit feedback handling\n","- Deploy as a web API (Flask/FastAPI)\n","- Add user interface for real-time recommendations\n","\n","---\n","\n","## 📜 License\n","\n","This project uses the MovieLens dataset provided by GroupLens Research.\n","\n"],"metadata":{"id":"yn90KXeK7nz2"}},{"cell_type":"code","source":[],"metadata":{"id":"xAnA6le571fD"},"execution_count":null,"outputs":[]}]}
+# 🎬 Hybrid Movie Recommendation System
+
+This project implements a **Hybrid Movie Recommendation System** using the MovieLens 1M dataset.
+
+It combines:
+
+- **Collaborative Filtering (Matrix Factorization)**
+- **Content-Based Filtering (Cosine Similarity)**
+
+The goal is to generate personalized movie recommendations while addressing issues like **data sparsity** and **cold-start problems**.
+
+---
+
+## 📌 Problem Statement
+
+Streaming platforms such as Netflix and Amazon Prime host thousands of movies. Without intelligent recommendation systems, users may struggle to find relevant content, leading to poor user experience.
+
+This project builds a hybrid recommendation model that:
+
+- Learns user preferences from historical ratings  
+- Uses movie genre similarity  
+- Combines both approaches for improved personalization  
+
+---
+
+## 📂 Dataset Description
+
+**Source:** MovieLens 1M (GroupLens)
+
+- 👤 6,040 Users  
+- 🎬 3,706 Movies  
+- ⭐ 1,000,209 Ratings (1–5 scale)  
+
+### Files Used
+
+- `users.dat` – User demographics  
+- `movies.dat` – Movie titles and genres  
+- `ratings.dat` – User ratings  
+
+The dataset is highly **sparse**, making it suitable for testing hybrid recommendation systems.
+
+---
+
+## ⚙️ Project Workflow
+
+1. Data Loading  
+2. Data Preprocessing  
+3. Feature Engineering  
+4. Model Architecture  
+5. Model Training  
+6. Model Evaluation  
+7. Hybrid Recommendation  
+8. Deployment  
+9. Insights & Conclusion  
+
+---
+
+## 🧹 Data Loading and Preprocessing
+
+- Loaded datasets using `pandas`
+- Merged ratings with movie metadata
+- Created a **User–Item interaction matrix**
+- Filled missing ratings with 0 for matrix factorization
+
+---
+
+## 🧠 Feature Engineering
+
+### Content-Based Features
+
+- Split movie genres using `|`
+- Encoded genres using `MultiLabelBinarizer`
+- Computed **Cosine Similarity** between movies
+
+### Collaborative Features
+
+- Constructed rating matrix
+- Applied **Matrix Factorization** using NumPy
+
+---
+
+## 🏗 Model Architecture
+
+### 1️⃣ Collaborative Filtering (Matrix Factorization)
+
+The rating matrix **R** is factorized into:
+
+- `P` → User latent feature matrix  
+- `Q` → Movie latent feature matrix  
+
+Predicted rating:
+
+R̂_ij = P_i · Q_j^T
+
+Optimization is performed using **Gradient Descent with Regularization**.
+
+---
+
+## 🚀 Model Training
+
+**Hyperparameters used:**
+
+- Latent factors (k): 20  
+- Iterations (steps): 50  
+- Learning rate (alpha): 0.002  
+- Regularization (beta): 0.02  
+
+Training reduces prediction error over iterations.
+
+Example loss output:
+
+Step 0 → 1328145.3421  
+Step 40 → 677275.4211  
+
+---
+
+## 📊 Model Evaluation
+
+Evaluation metric: **Root Mean Squared Error (RMSE)**
+
+Collaborative Filtering RMSE:
+
+0.7429
+
+Lower RMSE indicates better prediction accuracy.
+
+---
+
+## 🔀 Hybrid Recommendation
+
+Final prediction combines collaborative and content-based scores:
+
+final_score = α × collaborative_score + (1 - α) × content_score
+
+Where:
+- α controls balance between both models.
+
+This improves personalization and helps handle cold-start cases.
+
+---
+
+## 💾 Model Deployment
+
+Matrices are saved using `pickle`:
+
+- `P_matrix.pkl`
+- `Q_matrix.pkl`
+- `genre_matrix.pkl`
+
+This allows fast inference without retraining the model.
+
+---
+
+## 📌 Key Insights
+
+- Matrix factorization works efficiently using NumPy.
+- Content-based filtering improves cold-start recommendations.
+- Hybrid systems balance user behavior and movie similarity.
+- RMSE shows good predictive performance.
+- Precomputed recommendations simulate production-ready deployment.
+
+---
+
+## 🛠 Technologies Used
+
+- Python
+- NumPy
+- Pandas
+- Scikit-learn
+- Pickle
+- Google Colab
+
+---
+
+## 📈 Future Improvements
+
+- Implement Surprise library SVD for comparison
+- Add implicit feedback handling
+- Deploy as a web API (Flask/FastAPI)
+- Add user interface for real-time recommendations
+
+---
+
+## 📜 License
+
+This project uses the MovieLens dataset provided by GroupLens Research.
