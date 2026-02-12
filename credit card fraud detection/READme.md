@@ -1,40 +1,4 @@
 # Credit Card Fraud Detection
-
-## 📌 Project Requirements
-
-This project was completed as part of the **Meritshot Data Science Internship – Task 6 (Intermediate Level Project)**.
-
-### Internship Task Objective
-The objective of this task is to evaluate the intern’s ability to:
-- Solve a real-world data science problem
-- Handle imbalanced datasets
-- Apply appropriate machine learning techniques
-- Explain results clearly and professionally
-- Document the entire workflow step-by-step
-
-### Selected Project
-**Credit Card Fraud Detection (Imbalanced Machine Learning)**
-
-Only one project was selected and completed, as required.
-
-### Mandatory Deliverables
-- ✔ End-to-end machine learning project  
-- ✔ Exploratory Data Analysis with insights  
-- ✔ Handling class imbalance  
-- ✔ Model training and evaluation  
-- ✔ Detailed documentation (PDF)  
-- ✔ GitHub repository with clean README  
-- ✔ LinkedIn post showcasing the project  
-
-### Evaluation Focus
-- Clarity of explanation  
-- Logical project flow  
-- Correct methodology  
-- Business understanding  
-- Professional documentation  
-
----
-
 ## 📖 Project Overview
 
 Credit card fraud is a major challenge in the financial sector, causing financial losses for banks and inconvenience for customers. Fraudulent transactions are rare, making them difficult to detect using traditional rule-based systems.
@@ -184,4 +148,5 @@ This project demonstrates a complete **end-to-end data science workflow**, from 
 ## 👤 Author
 **Jetevu Richard**  
 Junior Data Scientist / ML Engineer  
+
 ---
